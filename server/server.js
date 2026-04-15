@@ -7,7 +7,10 @@ require("dotenv").config();
 
 const app = express();
 app.use(cors({
-    origin: "https://user-auth-client.onrender.com",
+    origin: [
+        "http://localhost:5173",
+        "https://user-auth-client.onrender.com"
+    ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"]
