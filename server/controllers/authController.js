@@ -1,9 +1,9 @@
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import User from "../models/userModel.js";
-import transporter from "../config/email.js";
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const User = require("../models/userModel.js");
+const transporter = require("../config/email.js");
 
-export const signup = async(req, res) => {
+const signup = async(req, res) => {
     try {
         const {name,email,password} = req.body;
 
@@ -32,7 +32,7 @@ export const signup = async(req, res) => {
     }
 };
 
-export const signin = async (req,res) => {
+const signin = async (req,res) => {
     try {
         const {email,password} = req.body;
 
@@ -59,7 +59,7 @@ export const signin = async (req,res) => {
     }
 };
 
-export const forgotPassword = async (req, res) => {
+const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
 
@@ -113,7 +113,7 @@ export const forgotPassword = async (req, res) => {
   }
 };
 
-export const resetPassword = async (req, res) => {
+const resetPassword = async (req, res) => {
   try {
     const { token, password } = req.body;
 
@@ -146,3 +146,5 @@ export const resetPassword = async (req, res) => {
     return res.status(500).json({ message: "Server error" });
   }
 };
+
+module.exports = { signup, signin, resetPassword, forgotPassword};
